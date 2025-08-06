@@ -21,12 +21,12 @@
 
 farmer-helper<br>
 ├── 📁 fonts&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;→ 폰트 파일 저장용 폴더<br>
-├── 📄 background.js        → 백그라운드 스크립트 (백그라운드에서 항상 실행)<br>
-├── 📄 content_script.js    → 웹페이지에 주입되는 스크립트<br>
-├── 🖼 icon48.png           → 확장 프로그램 아이콘<br>
-├── 📄 manifest.json        → 확장 프로그램의 설정 파일 (필수)<br>
-├── 📄 options.html         → 옵션 페이지 (HTML)<br>
-├── 📄 options.js           → 옵션 페이지 동작 제어 JS<br>
-├── 📄 popup.html           → 팝업 페이지 (HTML)<br>
-├── 📄 popup.js             → 팝업 동작 제어 JS<br>
-└── 📄 styles.css           → 전체 스타일 시트<br>
+├── 📄 background.js&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;→ 백그라운드 스크립트 (백그라운드에서 항상 실행)<br>
+├── 📄 content_script.js&nbsp;&nbsp;&nbsp;&nbsp;→ 웹페이지에 주입되는 스크립트<br>
+├── 🖼 icon48.png&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;→ 확장 프로그램 아이콘<br>
+├── 📄 manifest.json&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;→ 확장 프로그램의 설정 파일 (필수)<br>
+├── 📄 options.html&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;→ 옵션 페이지 (HTML)<br>
+├── 📄 options.js&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;→ 옵션 페이지 동작 제어 JS<br>
+├── 📄 popup.html&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;→ 팝업 페이지 (HTML)<br>
+├── 📄 popup.js&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;→ 팝업 동작 제어 JS<br>
+└── 📄 styles.css&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;→ 전체 스타일 시트<br>

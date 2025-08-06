@@ -28,20 +28,19 @@
 
 ## 📂 폴더 구조
 
-
----
-
+```
 farmer-helper/
-├── 📁 fonts → 폰트 파일 저장용 폴더
-├── 📄 background.js → 백그라운드 스크립트 (백그라운드에서 항상 실행)
-├── 📄 content_script.js → 웹페이지에 주입되는 스크립트
-├── 🖼 icon48.png → 확장 프로그램 아이콘
-├── 📄 manifest.json → 확장 프로그램의 설정 파일 (필수)
-├── 📄 options.html → 옵션 페이지 (HTML)
-├── 📄 options.js → 옵션 페이지 동작 제어 JS
-├── 📄 popup.html → 팝업 페이지 (HTML)
-├── 📄 popup.js → 팝업 동작 제어 JS
-└── 📄 styles.css → 전체 스타일 시트
+├── 📁 fonts                → 폰트 파일 저장용 폴더
+├── 📄 background.js        → 백그라운드 스크립트 (백그라운드에서 항상 실행)
+├── 📄 content_script.js    → 웹페이지에 주입되는 스크립트
+├── 🖼 icon48.png           → 확장 프로그램 아이콘
+├── 📄 manifest.json        → 확장 프로그램의 설정 파일 (필수)
+├── 📄 options.html         → 옵션 페이지 (HTML)
+├── 📄 options.js           → 옵션 페이지 동작 제어 JS
+├── 📄 popup.html           → 팝업 페이지 (HTML)
+├── 📄 popup.js             → 팝업 동작 제어 JS
+└── 📄 styles.css           → 전체 스타일 시트
+```
 
 ---
 

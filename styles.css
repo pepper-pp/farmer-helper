@@ -8,9 +8,3 @@
 .farmer-helper-highlight:hover {
     background-color: #FFEF99 !important;
 }
-
-/* 우클릭으로 추가된 항목은 다른 색으로 표시 (선택 사항) */
-.farmer-helper-added {
-    background-color: #E0FFE0 !important; /* 연한 초록색 */
-    outline: 1px dashed #4CAF50; /* 점선 테두리 추가 */
-}

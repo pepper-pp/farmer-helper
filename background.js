@@ -70,11 +70,7 @@ async function sendDataToSheets(newFarmers) {
         const BASE_API_URL = `https://sheets.googleapis.com/v4/spreadsheets/${SPREADSHEET_ID}/values`;
 
         try {
-            // --- ★★★ 로직 보완: 중복 검사 및 빈 행 찾기 통합 ★★★ ---
-
-            // 단계 1: 중복 검사와 빈 행 찾기에 필요한 모든 열(C, D, F)의 데이터를 한 번에 가져온다.
             const readRange = `${SHEET_NAME}!C:F`;
-            console.log(`데이터 조회 및 중복 검사 시도: ${readRange}`);
             const getResponse = await fetch(`${BASE_API_URL}/${encodeURIComponent(readRange)}`, {
                 headers: { 'Authorization': `Bearer ${token}` }
             });
@@ -83,50 +79,49 @@ async function sendDataToSheets(newFarmers) {
 
             const existingValues = existingData.values || [];
 
-            // 단계 2: D열이 비어있는 중복 데이터를 식별하기 위한 Set을 생성한다.
             const duplicateCheckSet = new Set();
             existingValues.forEach(row => {
-                const date = row[0];     // C열 데이터
-                const dValue = row[1];   // D열 데이터
-                const storeName = row[3]; // F열 데이터 (C열이 0번 인덱스이므로 F열은 3번)
+                const dateCellValue = row[0]; // C열의 셀 값 (예: "07/30 (수)")
+                const dValue = row[1];
+                const storeName = row[3];
 
-                // 조건: D열에 값이 *없는* 경우에만 중복 검사 대상으로 추가
-                if (!dValue && date && storeName) {
-                    const uniqueKey = `${date}::${storeName}`; // "날짜::스토어명" 형태의 고유 키
+                if (!dValue && dateCellValue && storeName) {
+                    // ★★★ 핵심 수정: 요일 부분 (소괄호와 내용) 및 모든 공백 제거 ★★★
+                    const cleanDate = String(dateCellValue).replace(/\s*\(.*\)\s*/g, '').replace(/\s/g, '');
+                    const cleanStoreName = String(storeName).replace(/\s/g, '');
+                    const uniqueKey = `${cleanDate}::${cleanStoreName}`;
                     duplicateCheckSet.add(uniqueKey);
                 }
             });
-            console.log(`중복 검사 Set 생성 완료. ${duplicateCheckSet.size}개의 항목을 검사합니다.`);
+            console.log("생성된 중복 검사 키 예시 (첫 5개):", Array.from(duplicateCheckSet).slice(0, 5));
 
-            // 단계 3: 새로 추가할 데이터(newFarmers)를 필터링한다.
             const farmersToAdd = newFarmers.filter(farmer => {
-                const date = farmer[2];      // 새로 추가할 데이터의 C열
-                const storeName = farmer[5]; // 새로 추가할 데이터의 F열
-                const uniqueKey = `${date}::${storeName}`;
-                // Set에 동일한 키가 존재하지 않는 경우에만 true를 반환 (즉, 중복이 아닐 때만 추가)
-                return !duplicateCheckSet.has(uniqueKey);
+                const date = farmer[2]; // "MM/DD" 형식
+                const storeName = farmer[5];
+                // ★★★ 핵심 수정: 이쪽도 모든 공백을 제거하여 비교 ★★★
+                const cleanDate = String(date).replace(/\s/g, '');
+                const cleanStoreName = String(storeName).replace(/\s/g, '');
+                const uniqueKey = `${cleanDate}::${cleanStoreName}`;
+
+                const isDuplicate = duplicateCheckSet.has(uniqueKey);
+                if (isDuplicate) {
+                    console.log(`중복 발견 (제외): ${uniqueKey}`);
+                }
+                return !isDuplicate;
             });
             console.log(`필터링 완료. 총 ${newFarmers.length}개 중 ${farmersToAdd.length}개의 새로운 항목을 추가합니다.`);
 
-            // 단계 4: 필터링된 데이터가 없으면 알림 후 종료.
             if (farmersToAdd.length === 0) {
-                chrome.notifications.create({
-                    type: 'basic', iconUrl: 'icon48.png',
-                    title: '추가할 항목 없음', message: '모든 "승인대기" 항목이 이미 시트에 존재하거나 조건에 맞지 않습니다.'
-                });
+                chrome.notifications.create({ type: 'basic', iconUrl: 'icon48.png', title: '추가할 항목 없음', message: '모든 "승인대기" 항목이 이미 시트에 존재합니다.' });
                 return;
             }
 
-            // 단계 5: C열을 기준으로 비어있는 첫 행을 찾아 데이터를 추가한다.
-            // C열 데이터만 필터링하여 실제 값이 있는 마지막 행을 찾는다.
             const cColumnData = existingValues.map(row => row[0]);
             let lastRow = cColumnData.length;
-            // 뒤에서부터 빈 셀이 아닐 때까지 탐색
             while(lastRow > 0 && (cColumnData[lastRow-1] === undefined || cColumnData[lastRow-1] === '')) {
                 lastRow--;
             }
             const nextRow = lastRow + 1;
-            console.log(`E열 수식 무시. C열 기준 다음 입력 행: ${nextRow}`);
 
             const updateRange = `${SHEET_NAME}!A${nextRow}`;
             const updateResponse = await fetch(`${BASE_API_URL}/${encodeURIComponent(updateRange)}?valueInputOption=USER_ENTERED`, {

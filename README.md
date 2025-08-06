@@ -19,8 +19,8 @@
 ✱styles.css<br>
 ‘승인대기’ 행에 연한 노란색 배경을 적용하고 마우스 오버 시 더 진한 색으로 변경해 시각적 강조를 제공한다<br>
 
-farmer-helper
-├── 📁 fonts                → 폰트 파일 저장용 폴더<br>
+farmer-helper<br>
+├── 📁 fonts&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;→ 폰트 파일 저장용 폴더<br>
 ├── 📄 background.js        → 백그라운드 스크립트 (백그라운드에서 항상 실행)<br>
 ├── 📄 content_script.js    → 웹페이지에 주입되는 스크립트<br>
 ├── 🖼 icon48.png           → 확장 프로그램 아이콘<br>

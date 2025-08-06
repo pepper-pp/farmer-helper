@@ -1,0 +1,16 @@
+/* 승인대기 상태인 행에 적용될 하이라이트 스타일 */
+.farmer-helper-highlight {
+    background-color: #FFFACD !important; /* 연한 노란색 (LemonChiffon) */
+    transition: background-color 0.2s ease-in-out;
+}
+
+/* 마우스를 올렸을 때 조금 더 진한 노란색으로 변경 */
+.farmer-helper-highlight:hover {
+    background-color: #FFEF99 !important;
+}
+
+/* 우클릭으로 추가된 항목은 다른 색으로 표시 (선택 사항) */
+.farmer-helper-added {
+    background-color: #E0FFE0 !important; /* 연한 초록색 */
+    outline: 1px dashed #4CAF50; /* 점선 테두리 추가 */
+}

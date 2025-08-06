@@ -1,0 +1,55 @@
+{
+  "manifest_version": 3,
+  "name": "파머 승인대기 취합 & 전송",
+  "version": "1.1",
+  "description": "파머 승인대기 항목을 누적하여 구글 스프레드시트에 자동으로 추가합니다.",
+
+  "permissions": [
+    "storage",
+    "identity",
+    "notifications"
+  ],
+
+  "host_permissions": [
+    "https://shopping-manager.kakaosecure.net/display/store-manager/etc/farmer/list/*"
+  ],
+
+  "oauth2": {
+    "client_id": "860831483398-fjj8sfl0o1i6t9uf9akl25b2jkd7j1qc.apps.googleusercontent.com",
+    "scopes": [
+      "https://www.googleapis.com/auth/spreadsheets"
+    ]
+  },
+
+  "background": {
+    "service_worker": "background.js"
+  },
+
+  "content_scripts": [
+    {
+      "matches": ["https://shopping-manager.kakaosecure.net/display/store-manager/etc/farmer/list*"],
+      "css": ["styles.css"],
+      "js": ["content_script.js"]
+    }
+  ],
+
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "48": "icon48.png"
+    }
+  },
+
+  "options_page": "options.html",
+
+  "web_accessible_resources": [
+    {
+      "resources": [ "fonts/*.ttf" ], // fonts 폴더 안의 모든 .ttf 파일을 허용
+      "matches": [ "<all_urls>" ]
+    }
+  ],
+
+  "icons": {
+    "48": "icon48.png"
+  }
+}

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>👩‍🌾파머 승인대기 자동 취합</title>
+    <style>
+        /* ★★★ 1. @font-face 규칙으로 폰트 정의 ★★★ */
+        @font-face {
+            font-family: 'AstaSans'; /* 사용할 폰트 이름 지정 */
+            src: url('fonts/AstaSans-Regular.ttf') format('truetype');
+            font-weight: 400; /* 일반 굵기 (normal) */
+        }
+        @font-face {
+            font-family: 'AstaSans'; /* 동일한 폰트 이름 사용 */
+            src: url('fonts/AstaSans-Bold.ttf') format('truetype');
+            font-weight: 700; /* 굵은 굵기 (bold) */
+        }
+
+        /* 2. body에 기본 폰트와 굵기 적용 */
+        body {
+            width: 220px;
+            /* AstaSans 폰트를 최우선으로 사용, 실패 시 기본 sans-serif 폰트 사용 */
+            font-family: 'AstaSans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            font-weight: 400; /* 기본 굵기는 Regular로 */
+            padding: 12px;
+            margin: 0;
+            background-color: #f7f7f7;
+            color: #333;
+        }
+
+        /* 3. 헤더에 굵은 굵기 적용 */
+        .header {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+
+        .header .title {
+            font-size: 15px;
+            font-weight: 700; /* Bold 굵기 */
+        }
+
+        /* 4. 버튼에도 굵은 굵기 적용 */
+        button {
+            width: 100%;
+            padding: 10px;
+            font-size: 13px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            /* 폰트 상속을 명시적으로 다시 한번 설정해 줄 수 있음 */
+            font-family: 'AstaSans', sans-serif;
+            font-weight: 700; /* Bold 굵기 */
+            transition: background-color 0.2s;
+        }
+
+        #send-btn {
+            background-color: #4CAF50;
+            color: white;
+            margin-bottom: 10px;
+        }
+
+        #send-btn:hover {
+            background-color: #45a049;
+        }
+
+        .options-link {
+            text-align: center;
+        }
+
+        .options-link a {
+            color: #777;
+            font-size: 12px;
+            text-decoration: none;
+            font-weight: 400; /* 설정 링크는 일반 굵기 */
+        }
+
+        .options-link a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <span class="title">👩‍🌾파머 승인대기 자동 취합</span>
+    </div>
+
+    <button id="send-btn">🚀 '승인대기' 모두 전송</button>
+
+    <div class="options-link">
+        <a href="#" id="options-link-btn">⚙️설정 (시트 ID 입력)</a>
+    </div>
+
+    <script src="popup.js"></script>
+</body>
+</html>

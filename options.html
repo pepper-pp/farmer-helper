@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>파머 서포터 설정</title>
+    <style>
+        body { font-family: sans-serif; padding: 20px; width: 400px; }
+        h1 { font-size: 20px; }
+        .form-group { margin-bottom: 15px; }
+        label { display: block; margin-bottom: 5px; font-weight: bold; }
+        input[type="text"] { width: 100%; padding: 8px; box-sizing: border-box; }
+        button { padding: 10px 15px; border-radius: 4px; cursor: pointer; border: none; }
+        #save-btn { background-color: #007bff; color: white; }
+        #login-btn { background-color: #db4437; color: white; margin-left: 10px; }
+        #status { margin-top: 15px; padding: 10px; border-radius: 4px; display: none; }
+        p { font-size: 14px; color: #555; line-height: 1.5; }
+    </style>
+</head>
+<body>
+    <h1>파머 서포터 설정</h1>
+    <p>데이터를 저장할 구글 스프레드시트의 정보를 입력해주세요.<br>스프레드시트 URL이 `.../d/SPREADSHEET_ID/edit` 라면 `SPREADSHEET_ID` 부분이 ID입니다.</p>
+    <div class="form-group">
+        <label for="spreadsheetId">구글 스프레드시트 ID:</label>
+        <input type="text" id="spreadsheetId">
+    </div>
+    <div class="form-group">
+        <label for="sheetName">시트 이름 (예: 파머_심사):</label>
+        <input type="text" id="sheetName">
+    </div>
+    <button id="save-btn">저장</button>
+    <button id="login-btn">Google 계정으로 로그인</button>
+    <div id="status"></div>
+    <script src="options.js"></script>
+</body>
+</html>
